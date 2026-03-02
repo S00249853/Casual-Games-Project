@@ -19,8 +19,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool knockbacked;
     [SerializeField] private PlayerAttributes attributes;
     [SerializeField] private Animator animator;
+    [SerializeField] private GameManager manager;
+    
 
     private bool Jumping;
+    public bool Wait;
 
     void Start()
     {
@@ -29,31 +32,36 @@ public class PlayerMovement : MonoBehaviour
         canJump = true;
         movementVector.x = speed;
         checkpoint = transform.position;
+        Wait = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-       // if (!IsOwner) return;
+        // if (!IsOwner) return;
+        if (!Wait)
+        {
             movementVector.y = body.linearVelocityY;
 
             body.linearVelocity = movementVector;
-        
-        if (Input.GetButtonDown("Jump"))
-        {
-            if (canJump == true)
+
+            if (Input.GetButtonDown("Jump"))
             {
-                Jump();
-               // canJump = false;
+                if (canJump == true)
+                {
+                    Jump();
+                    // canJump = false;
+                }
+
+                if (canWallJump == true)
+                {
+                    WallJump();
+                    canWallJump = false;
+                }
             }
 
-            if (canWallJump == true)
-            {
-                WallJump();
-                canWallJump = false;
-            }
+           
         }
-
         animator.SetFloat("xVelocity", Mathf.Abs(body.linearVelocityX));
         animator.SetBool("Jumping", Jumping);
     }
@@ -155,6 +163,11 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Checkpoint"))
         {
             checkpoint = collision.gameObject.transform.position;
+        }
+
+        if (collision.gameObject.CompareTag("Finish"))
+        {
+            manager.OnFinish();
         }
     }
 }

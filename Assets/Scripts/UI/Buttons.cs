@@ -14,8 +14,8 @@ public class Buttons : MonoBehaviour
         SceneManager.LoadScene("OnlineLoading");
     }
 
-    public void OnLevelPressed(string LevelName)
+    public void OnLevelPressed(string Level)
     {
-        SceneManager.LoadScene(LevelName);
+        SceneManager.LoadScene(Level);
     }
 }
