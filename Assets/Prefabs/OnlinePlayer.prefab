@@ -193,13 +193,14 @@ GameObject:
   - component: {fileID: 3049222848476466196}
   - component: {fileID: 5860343048490812848}
   - component: {fileID: 2443977839108794784}
-  - component: {fileID: 3086020772947864421}
-  - component: {fileID: 1302299819763062146}
   - component: {fileID: 8327328773819290610}
   - component: {fileID: 6079903124468980966}
   - component: {fileID: 2724132923270446077}
-  - component: {fileID: 4175739076828396196}
-  m_Layer: 0
+  - component: {fileID: 5022039814397288736}
+  - component: {fileID: -5948439617955688316}
+  - component: {fileID: 6945944188345394539}
+  - component: {fileID: -6724049933061217217}
+  m_Layer: 6
   m_Name: OnlinePlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +325,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -357,7 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 2345631739
+  GlobalObjectIdHash: 3567067280
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -370,45 +371,6 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
---- !u!114 &3086020772947864421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5766093968836581313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 007538a1d330d4445ae37b9891dbd498, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  speed: 10
-  jumpForce: 10
-  canJump: 0
-  jumpSlope: 0.5
-  canWallJump: 0
-  attack: {fileID: 1302299819763062146}
-  knockback: 8
-  knockbacked: 0
-  attributes: {fileID: 4175739076828396196}
-  animator: {fileID: 2724132923270446077}
---- !u!114 &1302299819763062146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5766093968836581313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65059c7f915d85a499202bb0104948ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
-  frontHurtPoint: {fileID: 4462084764861565104}
-  backHurtPoint: {fileID: 7675399629265088581}
-  currentHurtPoint: {fileID: 4462084764861565104}
-  attackRadius: 5
-  animator: {fileID: 2724132923270446077}
 --- !u!114 &8327328773819290610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,7 +456,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4175739076828396196
+--- !u!114 &5022039814397288736
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -503,8 +465,63 @@ MonoBehaviour:
   m_GameObject: {fileID: 5766093968836581313}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2843c4f63ccfb964e8b1fd4ad17f43fb, type: 3}
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttributes
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.Components.NetworkAnimator
+  ShowTopMostFoldoutHeaderGroup: 1
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 2724132923270446077}
+--- !u!114 &-5948439617955688316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5766093968836581313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3349ae7a3a01c224295cb7729b7b0de2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackO
+  ShowTopMostFoldoutHeaderGroup: 1
+  currentHurtPoint: {fileID: 4462084764861565104}
+  attackRadius: 2
+  animator: {fileID: 2724132923270446077}
+--- !u!114 &6945944188345394539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5766093968836581313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c07484b77db5522498438319d24c0e71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementO
+  ShowTopMostFoldoutHeaderGroup: 1
+  speed: 10
+  jumpForce: 10
+  canJump: 0
+  jumpSlope: 0.5
+  canWallJump: 0
+  attack: {fileID: -5948439617955688316}
+  knockback: 0
+  knockbacked: 0
+  attributes: {fileID: -6724049933061217217}
+  animator: {fileID: 2724132923270446077}
+--- !u!114 &-6724049933061217217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5766093968836581313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78665644283e18742b724cd4cc02ab44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttributesO
+  ShowTopMostFoldoutHeaderGroup: 1
   Health: 0
   MaxHealth: 0

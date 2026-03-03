@@ -14,10 +14,10 @@ public class PlayerMovementO : NetworkBehaviour
     [SerializeField] private bool canJump;
     [SerializeField] private float jumpSlope;
     [SerializeField] private bool canWallJump;
-    [SerializeField] private PlayerAttack attack;
+    [SerializeField] private PlayerAttackO attack;
     [SerializeField] private float knockback;
     [SerializeField] private bool knockbacked;
-    [SerializeField] private PlayerAttributes attributes;
+    [SerializeField] private PlayerAttributesO attributes;
     [SerializeField] private Animator animator;
 
     private bool Jumping;
@@ -34,7 +34,7 @@ public class PlayerMovementO : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!IsOwner) return;
+         if (!IsOwner) return;
             movementVector.y = body.linearVelocityY;
 
             body.linearVelocity = movementVector;
