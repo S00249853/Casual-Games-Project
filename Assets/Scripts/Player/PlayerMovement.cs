@@ -1,6 +1,7 @@
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -168,6 +169,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Finish"))
         {
             manager.OnFinish();
+          //  EndTime.text = timer.ToString();
         }
     }
 }

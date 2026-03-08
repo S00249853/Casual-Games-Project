@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 307766829665678944}
   m_Layer: 0
   m_Name: OfflinePlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -310,6 +310,8 @@ MonoBehaviour:
   knockbacked: 0
   attributes: {fileID: 307766829665678944}
   animator: {fileID: 3335357229095664426}
+  manager: {fileID: 0}
+  Wait: 0
 --- !u!114 &307766829665678944
 MonoBehaviour:
   m_ObjectHideFlags: 0

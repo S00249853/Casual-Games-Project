@@ -1,0 +1,13 @@
+C:\Users\Dtpol\AppData\Local\Temp\CasualGamesProjectCloud\module-compilation\CasualGamesProjectCloud.dll
+C:\Users\Dtpol\AppData\Local\Temp\CasualGamesProjectCloud\module-compilation\CasualGamesProjectCloud.deps.json
+C:\Users\Dtpol\AppData\Local\Temp\CasualGamesProjectCloud\module-compilation\CasualGamesProjectCloud.pdb
+C:\Users\Dtpol\AppData\Local\Temp\CasualGamesProjectCloud\module-compilation\Unity.Services.CloudCode.Apis.dll
+C:\Users\Dtpol\AppData\Local\Temp\CasualGamesProjectCloud\module-compilation\Unity.Services.CloudCode.Core.dll
+C:\Users\Dtpol\AppData\Local\Temp\CasualGamesProjectCloud\module-compilation\Google.Protobuf.dll
+C:\Users\Dtpol\AppData\Local\Temp\CasualGamesProjectCloud\module-compilation\Grpc.Core.Api.dll
+C:\Users\Dtpol\AppData\Local\Temp\CasualGamesProjectCloud\module-compilation\Grpc.Net.Client.dll
+C:\Users\Dtpol\AppData\Local\Temp\CasualGamesProjectCloud\module-compilation\Grpc.Net.Common.dll
+C:\Users\Dtpol\AppData\Local\Temp\CasualGamesProjectCloud\module-compilation\JsonSubTypes.dll
+C:\Users\Dtpol\AppData\Local\Temp\CasualGamesProjectCloud\module-compilation\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Dtpol\AppData\Local\Temp\CasualGamesProjectCloud\module-compilation\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Dtpol\AppData\Local\Temp\CasualGamesProjectCloud\module-compilation\Newtonsoft.Json.dll

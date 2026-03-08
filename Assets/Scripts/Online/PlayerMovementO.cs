@@ -1,6 +1,9 @@
+using TMPro;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 public class PlayerMovementO : NetworkBehaviour
 {
@@ -20,7 +23,16 @@ public class PlayerMovementO : NetworkBehaviour
     [SerializeField] private PlayerAttributesO attributes;
     [SerializeField] private Animator animator;
 
+
+    public TMP_Text Results;
+    public Button EndButton;
+
     private bool Jumping;
+    //  private bool wait;
+    public bool won;
+    public bool lost;
+
+    private float finishTime;
 
     void Start()
     {
@@ -29,28 +41,38 @@ public class PlayerMovementO : NetworkBehaviour
         canJump = true;
         movementVector.x = speed;
         checkpoint = transform.position;
+       // wait = true;
+        transform.position = GameManagerO.instance.playerSpawn.position;
+        Results = GameManagerO.instance.EndTime;
+        EndButton = GameManagerO.instance.EndButton;
+        Results.text = "";
+        EndButton.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+    
          if (!IsOwner) return;
+        if (GameManagerO.instance.Running)
+        {
             movementVector.y = body.linearVelocityY;
 
             body.linearVelocity = movementVector;
-        
-        if (Input.GetButtonDown("Jump"))
-        {
-            if (canJump == true)
-            {
-                Jump();
-               // canJump = false;
-            }
 
-            if (canWallJump == true)
+            if (Input.GetButtonDown("Jump"))
             {
-                WallJump();
-                canWallJump = false;
+                if (canJump == true)
+                {
+                    Jump();
+                    // canJump = false;
+                }
+
+                if (canWallJump == true)
+                {
+                    WallJump();
+                    canWallJump = false;
+                }
             }
         }
 
@@ -154,5 +176,32 @@ public class PlayerMovementO : NetworkBehaviour
         {
             checkpoint = collision.gameObject.transform.position;
         }
+
+        if (collision.gameObject.CompareTag("Finish"))
+        {
+
+            //Finish();
+            GameManagerO.instance.OnFinishRpc();
+            //    //if (won)
+            //    //GameManagerO.instance.EndTime.text = "You Win!";
+            //    //else
+            //    //    GameManagerO.instance.EndTime.text = "You Lose!";
+            //}
+        }
+
+        //public void Finish()
+        //{
+        //    EndButton.gameObject.SetActive(true);
+        //    float id = 
+        // //   GameManagerO.instance.Timer.text = "";
+        //    if (GameManagerO.instance.CheckWon()
+        //    {
+        //        Results.text = "You Win!";
+        //    }
+        //    else
+        //    {
+        //        Results.text = "You Lose!";
+        //    }
+        //}
     }
 }

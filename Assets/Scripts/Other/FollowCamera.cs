@@ -9,6 +9,10 @@ public class FollowCamera : MonoBehaviour
 
     void LateUpdate()
     {
+        if (ObjectToFollow == null)
+        {
+            ObjectToFollow = GameObject.FindGameObjectWithTag("Player").transform;
+        }
         targetPosition.x = ObjectToFollow.position.x;
         targetPosition.y = ObjectToFollow.position.y;
         targetPosition.z = transform.position.z;

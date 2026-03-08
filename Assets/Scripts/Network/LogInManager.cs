@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Unity.Services.Authentication;
 using Unity.Services.Authentication.PlayerAccounts;
@@ -6,6 +7,8 @@ using UnityEngine;
 
 public class LoginManager : MonoBehaviour
 {
+    public Action PlayerSignedIn;
+
     private async void Awake()
     {
         if (UnityServices.State == ServicesInitializationState.Uninitialized)
@@ -13,6 +16,20 @@ public class LoginManager : MonoBehaviour
             Debug.Log("Services Initializing");
             await UnityServices.InitializeAsync();
         }
+
+        if (UnityServices.State == ServicesInitializationState.Initialized)
+        {
+            UnitySignInSubscription();
+        }
+        else
+        {
+            UnityServices.Initialized += UnitySignInSubscription;
+        }
+
+    }
+
+    private void UnitySignInSubscription()
+    {
 
         PlayerAccountService.Instance.SignedIn += SignInOrLinkWithUnity;
     }
@@ -43,6 +60,7 @@ public class LoginManager : MonoBehaviour
             // Shows how to get the playerID
             Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
 
+            PlayerSignedIn.Invoke();
         }
         catch (AuthenticationException ex)
         {
@@ -150,5 +168,11 @@ public class LoginManager : MonoBehaviour
             // Notify the player with the proper error message
             Debug.LogException(ex);
         }
+    }
+
+    private void OnDestroy()
+    {
+        PlayerAccountService.Instance.SignedIn -= SignInOrLinkWithUnity;
+        UnityServices.Initialized -= UnitySignInSubscription;
     }
 }

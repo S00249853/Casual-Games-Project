@@ -1,0 +1,13 @@
+C:\Users\Dtpol\source\repos\Casual-Games-Project\CasualGamesProjectCloud\Project\bin\Release\net6.0\linux-x64\CasualGamesProjectCloud.deps.json
+C:\Users\Dtpol\source\repos\Casual-Games-Project\CasualGamesProjectCloud\Project\bin\Release\net6.0\linux-x64\CasualGamesProjectCloud.dll
+C:\Users\Dtpol\source\repos\Casual-Games-Project\CasualGamesProjectCloud\Project\bin\Release\net6.0\linux-x64\CasualGamesProjectCloud.pdb
+C:\Users\Dtpol\source\repos\Casual-Games-Project\CasualGamesProjectCloud\Project\obj\Release\net6.0\linux-x64\CasualGamesProjectCloud.csproj.AssemblyReference.cache
+C:\Users\Dtpol\source\repos\Casual-Games-Project\CasualGamesProjectCloud\Project\obj\Release\net6.0\linux-x64\CasualGamesProjectCloud.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dtpol\source\repos\Casual-Games-Project\CasualGamesProjectCloud\Project\obj\Release\net6.0\linux-x64\CasualGamesProjectCloud.AssemblyInfoInputs.cache
+C:\Users\Dtpol\source\repos\Casual-Games-Project\CasualGamesProjectCloud\Project\obj\Release\net6.0\linux-x64\CasualGamesProjectCloud.AssemblyInfo.cs
+C:\Users\Dtpol\source\repos\Casual-Games-Project\CasualGamesProjectCloud\Project\obj\Release\net6.0\linux-x64\CasualGamesProjectCloud.csproj.CoreCompileInputs.cache
+C:\Users\Dtpol\source\repos\Casual-Games-Project\CasualGamesProjectCloud\Project\obj\Release\net6.0\linux-x64\CasualGamesProjectCloud.sourcelink.json
+C:\Users\Dtpol\source\repos\Casual-Games-Project\CasualGamesProjectCloud\Project\obj\Release\net6.0\linux-x64\CasualGamesProjectCloud.dll
+C:\Users\Dtpol\source\repos\Casual-Games-Project\CasualGamesProjectCloud\Project\obj\Release\net6.0\linux-x64\refint\CasualGamesProjectCloud.dll
+C:\Users\Dtpol\source\repos\Casual-Games-Project\CasualGamesProjectCloud\Project\obj\Release\net6.0\linux-x64\CasualGamesProjectCloud.pdb
+C:\Users\Dtpol\source\repos\Casual-Games-Project\CasualGamesProjectCloud\Project\obj\Release\net6.0\linux-x64\ref\CasualGamesProjectCloud.dll
