@@ -4,11 +4,27 @@ using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using Unity.Netcode;
+using System;
 
 public class GameManagerO : NetworkBehaviour
 {
     public static GameManagerO instance {  get; private set; }
 
+    public event EventHandler<OnGameWinEventArgs> OnGameWin;
+    public class OnGameWinEventArgs : EventArgs
+    {
+        public Player winPlayer;
+    }
+
+    public enum Player
+    {
+      
+        Player1,
+        Player2
+    }
+
+    private Player LocalPlayer;
+    private Player WinningPlayer;
 
     private void Awake()
     {
@@ -22,11 +38,25 @@ public class GameManagerO : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
+        Debug.Log(NetworkManager.Singleton.LocalClientId);
+        if (NetworkManager.Singleton.LocalClientId == 0)
+        {
+            LocalPlayer = Player.Player1;
+        }
+        else
+        {
+            LocalPlayer = Player.Player2;
+        }
 
         if (IsServer)
         {
             NetworkManager.Singleton.OnClientConnectedCallback += NetworkManager_OnClientConnectedCallbackRpc;
         }
+    }
+
+    public Player GetLocalPlayer()
+    {
+        return LocalPlayer;
     }
 
     [Rpc(SendTo.ClientsAndHost)]
@@ -56,7 +86,7 @@ public class GameManagerO : NetworkBehaviour
     private float timer;
     private float countdown;
 
-       private NetworkVariable<float> timeToBeat = new NetworkVariable<float>();
+     //  private NetworkVariable<float> timeToBeat = new NetworkVariable<float>();
    // private float timeToBeat;
 
     void Start()
@@ -67,7 +97,7 @@ public class GameManagerO : NetworkBehaviour
         countdown = 3;
         EndButton.gameObject.SetActive(false);
         EndTime.text = "Waiting...";
-        timeToBeat.Value = 0;
+      //  timeToBeat.Value = 0;
             }
 
     // Update is called once per frame
@@ -92,25 +122,40 @@ public class GameManagerO : NetworkBehaviour
             Timer.text = timer.ToString();
         }
     }
-    
-    public void OnFinishRpc()
+
+    public void OnFinish(Player p)
     {
         Running = false;
         EndButton.gameObject.SetActive(true);
+        Timer.text = timer.ToString();
         Timer.text = "";
         if (!End)
         {
-            if (timeToBeat.Value == 0)
-            {
-                timeToBeat.Value = timer;
-                EndTime.text = "You Win!";
-            }
-            else
-            {
-                EndTime.text = "You Lose!";
-            }
+            TriggerOnGameWinRpc(p);
         }
         End = true;
+
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void TriggerOnGameWinRpc(Player p)
+    {
+        OnGameWin?.Invoke(this, new OnGameWinEventArgs
+        {
+            winPlayer = p
+        });
+    }
+
+    private void ShowVictory()
+    {
+        if (LocalPlayer == WinningPlayer)
+        {
+            EndTime.text = "You Win!";
+        }
+        else
+        {
+            EndTime.text = "You Lose!";
+        }
     }
     //public bool CheckWon(float id)
     //{

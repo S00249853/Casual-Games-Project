@@ -24,17 +24,9 @@ public class PlayerMovementO : NetworkBehaviour
     [SerializeField] private Animator animator;
    // [SerializeField] private Camera cam;
 
-
-
-    public TMP_Text Results;
-    public Button EndButton;
-
     private bool Jumping;
     //  private bool wait;
-    public bool won;
-    public bool lost;
-
-    private float finishTime;
+    public NetworkVariable<GameManagerO.Player> player = new NetworkVariable<GameManagerO.Player>( GameManagerO.Player.Player1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     void Start()
     {
@@ -46,16 +38,13 @@ public class PlayerMovementO : NetworkBehaviour
        // wait = true;
         transform.position = GameManagerO.instance.playerSpawn.position;
     //    Results = GameManagerO.instance.EndTime;
-        EndButton = GameManagerO.instance.EndButton;
-        Results.text = "";
-        EndButton.gameObject.SetActive(false);
-   //     cam = GameManagerO.instance.cam;
+        //     cam = GameManagerO.instance.cam;
 
 
-
+        
     }
 
-    Vector3 targetPosition;
+
 
     //void LateUpdate()
     //{
@@ -69,8 +58,9 @@ public class PlayerMovementO : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-    
-         if (!IsOwner) return;
+        if (GameManagerO.instance.Starting)
+            player.Value = GameManagerO.instance.GetLocalPlayer();
+        if (!IsOwner) return;
         if (GameManagerO.instance.Running)
         {
             movementVector.y = body.linearVelocityY;
@@ -223,7 +213,7 @@ public class PlayerMovementO : NetworkBehaviour
         {
 
             //Finish();
-            GameManagerO.instance.OnFinishRpc();
+            GameManagerO.instance.OnFinish(player.Value);
             //    //if (won)
             //    //GameManagerO.instance.EndTime.text = "You Win!";
             //    //else
