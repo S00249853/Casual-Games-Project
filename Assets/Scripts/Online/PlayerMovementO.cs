@@ -22,6 +22,7 @@ public class PlayerMovementO : NetworkBehaviour
     [SerializeField] private bool knockbacked;
     [SerializeField] private PlayerAttributesO attributes;
     [SerializeField] private Animator animator;
+    [SerializeField] private Camera cam;
 
 
     public TMP_Text Results;
@@ -47,6 +48,18 @@ public class PlayerMovementO : NetworkBehaviour
         EndButton = GameManagerO.instance.EndButton;
         Results.text = "";
         EndButton.gameObject.SetActive(false);
+        cam = GameManagerO.instance.cam;
+    }
+
+    Vector3 targetPosition;
+
+    void LateUpdate()
+    {
+        targetPosition.x = this.transform.position.x;
+        targetPosition.y = this.transform.position.y;
+        targetPosition.z = -10;
+
+        cam.transform.position = targetPosition;
     }
 
     // Update is called once per frame
@@ -113,6 +126,21 @@ public class PlayerMovementO : NetworkBehaviour
         }
     }
 
+    public void MobileJump()
+    {
+        if (canJump == true)
+        {
+            Jump();
+            // canJump = false;
+        }
+
+        if (canWallJump == true)
+        {
+            WallJump();
+            canWallJump = false;
+        }
+    }
+
     public void OnJumpingCompleted()
     {
         Jumping = false;
@@ -138,7 +166,7 @@ public class PlayerMovementO : NetworkBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             attributes.Health -= 10;
-            Knockback();
+            transform.position = checkpoint;
         }
 
         if (collision.gameObject.CompareTag("Hazard"))

@@ -11,10 +11,10 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            OnAttack();
-        }
+        //if (Input.GetButtonDown("Fire1"))
+        //{
+        //    OnAttack();
+        //}
         animator.SetBool("isAttacking", isAttacking);
     }
 

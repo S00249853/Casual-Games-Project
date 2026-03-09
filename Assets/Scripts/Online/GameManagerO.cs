@@ -34,6 +34,7 @@ public class GameManagerO : NetworkBehaviour
     {
        if (NetworkManager.Singleton.ConnectedClientsList.Count == 2)
         {
+            SessionUI.SetActive(false);
             Starting = true;
         }
     }
@@ -43,6 +44,8 @@ public class GameManagerO : NetworkBehaviour
     public TMP_Text Timer;
     public TMP_Text EndTime;
     public Button EndButton;
+    public Camera cam;
+    [SerializeField] GameObject SessionUI;
 
     public bool Starting;
     public bool Running;

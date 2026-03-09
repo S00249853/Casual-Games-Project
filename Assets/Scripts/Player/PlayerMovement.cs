@@ -127,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             attributes.Health -= 10;
-            Knockback();
+            transform.position = checkpoint;
         }
 
         if (collision.gameObject.CompareTag("Hazard"))
@@ -148,8 +148,21 @@ public class PlayerMovement : MonoBehaviour
         {
             canWallJump = true;
         }
+    }
 
+    public void MobileJump()
+    {
+        if (canJump == true)
+        {
+            Jump();
+            // canJump = false;
+        }
 
+        if (canWallJump == true)
+        {
+            WallJump();
+            canWallJump = false;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
