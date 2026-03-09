@@ -11,11 +11,16 @@ public class Buttons : MonoBehaviour
 
     public void OnOnlinePressed()
     {
-        SceneManager.LoadScene("OnlineLoading");
+        SceneManager.LoadScene("Level1");
     }
 
     public void OnLevelPressed(string Level)
     {
         SceneManager.LoadScene(Level);
+    }
+
+    public void OnMainPressed()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

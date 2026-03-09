@@ -4,6 +4,7 @@ using Unity.Services.Authentication;
 using Unity.Services.Authentication.PlayerAccounts;
 using Unity.Services.Core;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LoginManager : MonoBehaviour
 {
@@ -118,7 +119,8 @@ public class LoginManager : MonoBehaviour
                 Debug.Log("Signing up with Unity Player Account...");
                 await AuthenticationService.Instance.SignInWithUnityAsync(PlayerAccountService.Instance.AccessToken);
                 Debug.Log("Successfully signed up with Unity Player Account");
-                return;
+                SceneManager.LoadScene("MainMenu");
+             //   return;
             }
 
             // 2. Player is authenticated, but does not yet have a Unity ID, so let's link
@@ -127,11 +129,13 @@ public class LoginManager : MonoBehaviour
                 Debug.Log("Linking anonymous account to Unity...");
                 await LinkWithUnityAsync(PlayerAccountService.Instance.AccessToken);
                 Debug.Log("Successfully linked anonymous account!");
-                return;
+                SceneManager.LoadScene("MainMenu");
+              //  return;
             }
 
             // 3. Player has authentication and a Unity ID
             Debug.Log("Player is already signed in to their Unity Player Account");
+            SceneManager.LoadScene("MainMenu");
         }
         catch (RequestFailedException ex)
         {

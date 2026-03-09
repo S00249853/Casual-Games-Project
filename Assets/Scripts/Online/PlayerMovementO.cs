@@ -22,7 +22,8 @@ public class PlayerMovementO : NetworkBehaviour
     [SerializeField] private bool knockbacked;
     [SerializeField] private PlayerAttributesO attributes;
     [SerializeField] private Animator animator;
-    [SerializeField] private Camera cam;
+   // [SerializeField] private Camera cam;
+
 
 
     public TMP_Text Results;
@@ -44,23 +45,26 @@ public class PlayerMovementO : NetworkBehaviour
         checkpoint = transform.position;
        // wait = true;
         transform.position = GameManagerO.instance.playerSpawn.position;
-        Results = GameManagerO.instance.EndTime;
+    //    Results = GameManagerO.instance.EndTime;
         EndButton = GameManagerO.instance.EndButton;
         Results.text = "";
         EndButton.gameObject.SetActive(false);
-        cam = GameManagerO.instance.cam;
+   //     cam = GameManagerO.instance.cam;
+
+
+
     }
 
     Vector3 targetPosition;
 
-    void LateUpdate()
-    {
-        targetPosition.x = this.transform.position.x;
-        targetPosition.y = this.transform.position.y;
-        targetPosition.z = -10;
+    //void LateUpdate()
+    //{
+    //    targetPosition.x = this.transform.position.x;
+    //    targetPosition.y = this.transform.position.y;
+    //    targetPosition.z = -10;
 
-        cam.transform.position = targetPosition;
-    }
+    //    cam.transform.position = targetPosition;
+    //}
 
     // Update is called once per frame
     void Update()
@@ -73,20 +77,20 @@ public class PlayerMovementO : NetworkBehaviour
 
             body.linearVelocity = movementVector;
 
-            if (Input.GetButtonDown("Jump"))
-            {
-                if (canJump == true)
-                {
-                    Jump();
-                    // canJump = false;
-                }
+            //if (Input.GetButtonDown("Jump"))
+            //{
+            //    if (canJump == true)
+            //    {
+            //        Jump();
+            //        // canJump = false;
+            //    }
 
-                if (canWallJump == true)
-                {
-                    WallJump();
-                    canWallJump = false;
-                }
-            }
+            //    if (canWallJump == true)
+            //    {
+            //        WallJump();
+            //        canWallJump = false;
+            //    }
+            //}
         }
 
         animator.SetFloat("xVelocity", Mathf.Abs(body.linearVelocityX));
@@ -105,41 +109,51 @@ public class PlayerMovementO : NetworkBehaviour
 
     }
 
-    protected void Jump()
-    {
-        Jumping = true;
-        body.AddForce(jumpVector, ForceMode2D.Impulse);
-    }
-
-    protected void WallJump()
-    {
-        Jumping = true;
-        movementVector.x = -movementVector.x; 
-        body.AddForce(jumpVector, ForceMode2D.Impulse);
-        if (transform.localScale.x == 4)
-        {
-            transform.localScale = new Vector3(-4, 4, 1);
-        }
-        else
-        {
-            transform.localScale = new Vector3(4, 4, 1);
-        }
-    }
-
-    public void MobileJump()
+    protected void OnJump()
     {
         if (canJump == true)
         {
-            Jump();
-            // canJump = false;
+            Jumping = true;
+            body.AddForce(jumpVector, ForceMode2D.Impulse);
         }
 
         if (canWallJump == true)
         {
-            WallJump();
-            canWallJump = false;
+            Jumping = true;
+            movementVector.x = -movementVector.x;
+            body.AddForce(jumpVector, ForceMode2D.Impulse);
+            if (transform.localScale.x == 4)
+            {
+                transform.localScale = new Vector3(-4, 4, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(4, 4, 1);
+            }
         }
+
+
     }
+
+    protected void WallJump()
+    {
+
+    }
+
+    //public void MobileJump()
+    //{
+    //    if (canJump == true)
+    //    {
+    //        Jump();
+    //        // canJump = false;
+    //    }
+
+    //    if (canWallJump == true)
+    //    {
+    //        WallJump();
+    //        canWallJump = false;
+    //    }
+    //}
 
     public void OnJumpingCompleted()
     {

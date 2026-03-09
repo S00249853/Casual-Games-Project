@@ -56,8 +56,8 @@ public class GameManagerO : NetworkBehaviour
     private float timer;
     private float countdown;
 
-    //    private NetworkVariable<float> timeToBeat = new NetworkVariable<float>();
-    private float timeToBeat;
+       private NetworkVariable<float> timeToBeat = new NetworkVariable<float>();
+   // private float timeToBeat;
 
     void Start()
     {
@@ -67,7 +67,7 @@ public class GameManagerO : NetworkBehaviour
         countdown = 3;
         EndButton.gameObject.SetActive(false);
         EndTime.text = "Waiting...";
-        timeToBeat = 0;
+        timeToBeat.Value = 0;
             }
 
     // Update is called once per frame
@@ -100,9 +100,9 @@ public class GameManagerO : NetworkBehaviour
         Timer.text = "";
         if (!End)
         {
-            if (timeToBeat == 0)
+            if (timeToBeat.Value == 0)
             {
-                timeToBeat = timer;
+                timeToBeat.Value = timer;
                 EndTime.text = "You Win!";
             }
             else

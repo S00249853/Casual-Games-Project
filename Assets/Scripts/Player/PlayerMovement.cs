@@ -46,20 +46,20 @@ public class PlayerMovement : MonoBehaviour
 
             body.linearVelocity = movementVector;
 
-            if (Input.GetButtonDown("Jump"))
-            {
-                if (canJump == true)
-                {
-                    Jump();
-                    // canJump = false;
-                }
+            //if (Input.GetButtonDown("Jump"))
+            //{
+            //    if (canJump == true)
+            //    {
+            //        Jump();
+            //        // canJump = false;
+            //    }
 
-                if (canWallJump == true)
-                {
-                    WallJump();
-                    canWallJump = false;
-                }
-            }
+            //    if (canWallJump == true)
+            //    {
+            //        WallJump();
+            //        canWallJump = false;
+            //    }
+            //}
 
            
         }
@@ -79,12 +79,32 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    protected void Jump()
+    protected void OnJump()
     {
-        Jumping = true;
-        body.AddForce(jumpVector, ForceMode2D.Impulse);
-    
+        if (canJump == true)
+        {
+            Jumping = true;
+            body.AddForce(jumpVector, ForceMode2D.Impulse);
+        }
+
+        if (canWallJump == true)
+        {
+            Jumping = true;
+            movementVector.x = -movementVector.x;
+            body.AddForce(jumpVector, ForceMode2D.Impulse);
+            if (transform.localScale.x == 4)
+            {
+                transform.localScale = new Vector3(-4, 4, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(4, 4, 1);
+            }
+        }
+
+
     }
+
 
     protected void WallJump()
     {
@@ -150,20 +170,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void MobileJump()
-    {
-        if (canJump == true)
-        {
-            Jump();
-            // canJump = false;
-        }
+    //public void MobileJump()
+    //{
+    //    if (canJump == true)
+    //    {
+    //        Jump();
+    //        // canJump = false;
+    //    }
 
-        if (canWallJump == true)
-        {
-            WallJump();
-            canWallJump = false;
-        }
-    }
+    //    if (canWallJump == true)
+    //    {
+    //        WallJump();
+    //        canWallJump = false;
+    //    }
+    //}
 
     private void OnCollisionExit2D(Collision2D collision)
     {
