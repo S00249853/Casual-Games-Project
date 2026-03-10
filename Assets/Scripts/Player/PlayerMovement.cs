@@ -16,9 +16,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpSlope;
     [SerializeField] private bool canWallJump;
     [SerializeField] private PlayerAttack attack;
-    [SerializeField] private float knockback;
-    [SerializeField] private bool knockbacked;
-    [SerializeField] private PlayerAttributes attributes;
     [SerializeField] private Animator animator;
     [SerializeField] private GameManager manager;
     
@@ -36,47 +33,17 @@ public class PlayerMovement : MonoBehaviour
         Wait = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // if (!IsOwner) return;
         if (!Wait)
         {
             movementVector.y = body.linearVelocityY;
 
             body.linearVelocity = movementVector;
-
-            //if (Input.GetButtonDown("Jump"))
-            //{
-            //    if (canJump == true)
-            //    {
-            //        Jump();
-            //        // canJump = false;
-            //    }
-
-            //    if (canWallJump == true)
-            //    {
-            //        WallJump();
-            //        canWallJump = false;
-            //    }
-            //}
-
-           
+    
         }
         animator.SetFloat("xVelocity", Mathf.Abs(body.linearVelocityX));
         animator.SetBool("Jumping", Jumping);
-    }
-
-    void Knockback()
-    {
-        knockbacked = true;
-        movementVector.x = -movementVector.x;
-        body.AddForce(new Vector2(jumpVector.x,knockback), ForceMode2D.Impulse);
-
-
-        movementVector.x = -movementVector.x;
-        knockbacked = true;
-
     }
 
     public void OnJump()
@@ -146,13 +113,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            attributes.Health -= 10;
-            transform.position = checkpoint;
-        }
-
-        if (collision.gameObject.CompareTag("Hazard"))
-        {
-            attributes.Health -= 10;
             transform.position = checkpoint;
         }
     }
@@ -170,24 +130,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //public void MobileJump()
-    //{
-    //    if (canJump == true)
-    //    {
-    //        Jump();
-    //        // canJump = false;
-    //    }
-
-    //    if (canWallJump == true)
-    //    {
-    //        WallJump();
-    //        canWallJump = false;
-    //    }
-    //}
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        //canJump = false;
         canWallJump = false;
     }
 
@@ -202,7 +147,6 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Finish"))
         {
             manager.OnFinish();
-          //  EndTime.text = timer.ToString();
         }
     }
 }

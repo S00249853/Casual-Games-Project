@@ -199,7 +199,6 @@ GameObject:
   - component: {fileID: 5022039814397288736}
   - component: {fileID: -5948439617955688316}
   - component: {fileID: 6945944188345394539}
-  - component: {fileID: -6724049933061217217}
   - component: {fileID: 218647029006454596}
   m_Layer: 6
   m_Name: OnlinePlayer
@@ -507,30 +506,10 @@ MonoBehaviour:
   jumpSlope: 0.5
   canWallJump: 0
   attack: {fileID: -5948439617955688316}
-  knockback: 0
-  knockbacked: 0
-  attributes: {fileID: -6724049933061217217}
+  attributes: {fileID: 0}
   animator: {fileID: 2724132923270446077}
-  cam: {fileID: 0}
-  Results: {fileID: 0}
-  EndButton: {fileID: 0}
-  won: 0
-  lost: 0
---- !u!114 &-6724049933061217217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5766093968836581313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78665644283e18742b724cd4cc02ab44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttributesO
-  ShowTopMostFoldoutHeaderGroup: 1
-  Health: 0
-  MaxHealth: 0
+  player:
+    m_InternalValue: 0
 --- !u!114 &218647029006454596
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,10 +13,6 @@ public class PlayerAttackO : NetworkBehaviour
 
     private void Update()
     {
-        //if (Input.GetButtonDown("Fire1"))
-        //{
-        //    OnAttack();
-        //}
         animator.SetBool("isAttacking", isAttacking);
     }
 

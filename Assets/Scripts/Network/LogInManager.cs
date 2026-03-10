@@ -35,17 +35,6 @@ public class LoginManager : MonoBehaviour
         PlayerAccountService.Instance.SignedIn += SignInOrLinkWithUnity;
     }
 
-    async void Start()
-    {
-    //    if (!AuthenticationService.Instance.SessionTokenExists)
-    //    {
-    //        Debug.Log("Session Token not found");
-    //        return;
-    //    }
-
-    //    Debug.Log("Returning player signing in...");
-    //    await SignInAnonymouslyAsync();
-    }
     public async void StartAnonymousSignIn()
     {
         await SignInAnonymouslyAsync();

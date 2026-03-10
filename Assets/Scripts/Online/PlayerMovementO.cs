@@ -18,14 +18,11 @@ public class PlayerMovementO : NetworkBehaviour
     [SerializeField] private float jumpSlope;
     [SerializeField] private bool canWallJump;
     [SerializeField] private PlayerAttackO attack;
-    [SerializeField] private float knockback;
-    [SerializeField] private bool knockbacked;
-    [SerializeField] private PlayerAttributesO attributes;
     [SerializeField] private Animator animator;
-   // [SerializeField] private Camera cam;
+
 
     private bool Jumping;
-    //  private bool wait;
+
     public NetworkVariable<GameManagerO.Player> player = new NetworkVariable<GameManagerO.Player>( GameManagerO.Player.Player1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     void Start()
@@ -35,27 +32,12 @@ public class PlayerMovementO : NetworkBehaviour
         canJump = true;
         movementVector.x = speed;
         checkpoint = transform.position;
-       // wait = true;
         transform.position = GameManagerO.instance.playerSpawn.position;
-    //    Results = GameManagerO.instance.EndTime;
-        //     cam = GameManagerO.instance.cam;
 
 
         
     }
 
-
-
-    //void LateUpdate()
-    //{
-    //    targetPosition.x = this.transform.position.x;
-    //    targetPosition.y = this.transform.position.y;
-    //    targetPosition.z = -10;
-
-    //    cam.transform.position = targetPosition;
-    //}
-
-    // Update is called once per frame
     void Update()
     {
         if (GameManagerO.instance.Starting)
@@ -66,37 +48,10 @@ public class PlayerMovementO : NetworkBehaviour
             movementVector.y = body.linearVelocityY;
 
             body.linearVelocity = movementVector;
-
-            //if (Input.GetButtonDown("Jump"))
-            //{
-            //    if (canJump == true)
-            //    {
-            //        Jump();
-            //        // canJump = false;
-            //    }
-
-            //    if (canWallJump == true)
-            //    {
-            //        WallJump();
-            //        canWallJump = false;
-            //    }
-            //}
         }
 
         animator.SetFloat("xVelocity", Mathf.Abs(body.linearVelocityX));
         animator.SetBool("Jumping", Jumping);
-    }
-
-    void Knockback()
-    {
-        knockbacked = true;
-        movementVector.x = -movementVector.x;
-        body.AddForce(new Vector2(jumpVector.x,knockback), ForceMode2D.Impulse);
-
-
-        movementVector.x = -movementVector.x;
-        knockbacked = true;
-
     }
 
     public void OnJump()
@@ -125,26 +80,6 @@ public class PlayerMovementO : NetworkBehaviour
 
     }
 
-    protected void WallJump()
-    {
-
-    }
-
-    //public void MobileJump()
-    //{
-    //    if (canJump == true)
-    //    {
-    //        Jump();
-    //        // canJump = false;
-    //    }
-
-    //    if (canWallJump == true)
-    //    {
-    //        WallJump();
-    //        canWallJump = false;
-    //    }
-    //}
-
     public void OnJumpingCompleted()
     {
         Jumping = false;
@@ -169,13 +104,11 @@ public class PlayerMovementO : NetworkBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            attributes.Health -= 10;
             transform.position = checkpoint;
         }
 
         if (collision.gameObject.CompareTag("Hazard"))
         {
-            attributes.Health -= 10;
             transform.position = checkpoint;
         }
     }
@@ -197,7 +130,6 @@ public class PlayerMovementO : NetworkBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        //canJump = false;
         canWallJump = false;
     }
 
@@ -210,30 +142,8 @@ public class PlayerMovementO : NetworkBehaviour
         }
 
         if (collision.gameObject.CompareTag("Finish"))
-        {
-
-            //Finish();
+        { 
             GameManagerO.instance.OnFinish(player.Value);
-            //    //if (won)
-            //    //GameManagerO.instance.EndTime.text = "You Win!";
-            //    //else
-            //    //    GameManagerO.instance.EndTime.text = "You Lose!";
-            //}
         }
-
-        //public void Finish()
-        //{
-        //    EndButton.gameObject.SetActive(true);
-        //    float id = 
-        // //   GameManagerO.instance.Timer.text = "";
-        //    if (GameManagerO.instance.CheckWon()
-        //    {
-        //        Results.text = "You Win!";
-        //    }
-        //    else
-        //    {
-        //        Results.text = "You Lose!";
-        //    }
-        //}
     }
 }

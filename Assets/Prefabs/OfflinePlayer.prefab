@@ -476,7 +476,6 @@ GameObject:
   - component: {fileID: 3335357229095664426}
   - component: {fileID: 3248262804981244479}
   - component: {fileID: 5054150680373300929}
-  - component: {fileID: 307766829665678944}
   m_Layer: 0
   m_Name: OfflinePlayer
   m_TagString: Player
@@ -678,26 +677,9 @@ MonoBehaviour:
   jumpSlope: 0.5
   canWallJump: 0
   attack: {fileID: 3248262804981244479}
-  knockback: 8
-  knockbacked: 0
-  attributes: {fileID: 307766829665678944}
   animator: {fileID: 3335357229095664426}
   manager: {fileID: 0}
   Wait: 0
---- !u!114 &307766829665678944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6279461299337103488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2843c4f63ccfb964e8b1fd4ad17f43fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttributes
-  Health: 100
-  MaxHealth: 100
 --- !u!1 &6955124853697984678
 GameObject:
   m_ObjectHideFlags: 0

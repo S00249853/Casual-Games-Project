@@ -24,7 +24,6 @@ public class GameManagerO : NetworkBehaviour
     }
 
     private Player LocalPlayer;
-    private Player WinningPlayer;
 
     private void Awake()
     {
@@ -69,38 +68,29 @@ public class GameManagerO : NetworkBehaviour
         }
     }
 
-    // [SerializeField] GameObject player;
     public Transform playerSpawn;
     public TMP_Text Timer;
     public TMP_Text EndTime;
     public Button EndButton;
-    public Camera cam;
     [SerializeField] GameObject SessionUI;
 
     public bool Starting;
     public bool Running;
     public bool End;
 
-   // private PlayerMovement Player;
 
     private float timer;
     private float countdown;
 
-     //  private NetworkVariable<float> timeToBeat = new NetworkVariable<float>();
-   // private float timeToBeat;
+
 
     void Start()
     {
-        // player.transform.position = playerSpawn.position;
-        //Starting = true;
-        // Player = player.GetComponent<PlayerMovement>();
         countdown = 3;
         EndButton.gameObject.SetActive(false);
         EndTime.text = "Waiting...";
-      //  timeToBeat.Value = 0;
-            }
+    }
 
-    // Update is called once per frame
     void Update()
     {
         if (Starting)
@@ -112,7 +102,6 @@ public class GameManagerO : NetworkBehaviour
                 EndTime.text = "";
                 Starting=false;
                 Running = true;
-              //  Player.Wait = false;
             }
         }
         if (Running)
@@ -145,31 +134,6 @@ public class GameManagerO : NetworkBehaviour
             winPlayer = p
         });
     }
-
-    private void ShowVictory()
-    {
-        if (LocalPlayer == WinningPlayer)
-        {
-            EndTime.text = "You Win!";
-        }
-        else
-        {
-            EndTime.text = "You Lose!";
-        }
-    }
-    //public bool CheckWon(float id)
-    //{
-
-    //    if (timeToBeat == 0)
-    //    {
-    //        timeToBeat = timer;
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        return false;
-    //    }
-    //}
 
     public void OnClickEnd()
     {
