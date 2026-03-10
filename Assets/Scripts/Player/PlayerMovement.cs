@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    protected void OnJump()
+    public void OnJump()
     {
         if (canJump == true)
         {

@@ -99,7 +99,7 @@ public class PlayerMovementO : NetworkBehaviour
 
     }
 
-    protected void OnJump()
+    public void OnJump()
     {
         if (canJump == true)
         {

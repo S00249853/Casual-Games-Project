@@ -37,14 +37,14 @@ public class LoginManager : MonoBehaviour
 
     async void Start()
     {
-        if (!AuthenticationService.Instance.SessionTokenExists)
-        {
-            Debug.Log("Session Token not found");
-            return;
-        }
+    //    if (!AuthenticationService.Instance.SessionTokenExists)
+    //    {
+    //        Debug.Log("Session Token not found");
+    //        return;
+    //    }
 
-        Debug.Log("Returning player signing in...");
-        await SignInAnonymouslyAsync();
+    //    Debug.Log("Returning player signing in...");
+    //    await SignInAnonymouslyAsync();
     }
     public async void StartAnonymousSignIn()
     {
@@ -62,6 +62,8 @@ public class LoginManager : MonoBehaviour
             Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
 
             PlayerSignedIn.Invoke();
+
+            SceneManager.LoadScene("MainMenu");
         }
         catch (AuthenticationException ex)
         {
